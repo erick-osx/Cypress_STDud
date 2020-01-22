@@ -14,6 +14,9 @@ describe('Cypress basics', () => {
         cy.title()
             .should('to.be.equal', 'Campo de Treinamento')
             .should('contain', 'Campo')
+
+            //toDo imprimir o log no console
+            //toDo escrever o log em um campo de texto
         
         //outra melhoria do exemplo acima, em relacao a legibilidade, usando 'and'
         // cy.title()
