@@ -84,6 +84,7 @@ describe('Work with basic elements', () => {
             //TODO validar opções selecionadas do combo multiplo
     })
 })
+
 //Available sequences are: selectAll, moveToStart, moveToEnd, del, backspace, esc, enter,
 // rightArrow, leftArrow, upArrow, downArrow, home, end, insert, pageUp, pageDown, {, alt,
 // option, ctrl, control, meta, command, cmd, shift.
