@@ -26,7 +26,7 @@ describe('Shoul test at a functional level', () => {
     it('Should update an account', () => {
         cy.acessarMenuConta()
         //cy.get('.fa-edit').click()
-        cy.xpath(loc.CONTAS.XP_BTN_ALTERAR).click()
+        cy.xpath(loc.CONTAS.FN_XP_BTN_ALTERAR('Conta Teste 01')).click()
         cy.get(loc.CONTAS.NOME)
             .clear()
             .type('Conta Editada 01')
@@ -41,6 +41,29 @@ describe('Shoul test at a functional level', () => {
         cy.get(loc.CONTAS.NOME).type('Conta Editada 01')
         cy.get(loc.CONTAS.BTN_SALVAR).click()
         cy.get(loc.MESSAGE).should('contain', '400')
+
+    })
+
+    it('Should create a transaction', () => {
+        cy.get(loc.MENU.MOVIMENTACAO).click()
+        cy.get(loc.MOVIMENTACAO.DESCRICAO).type('Movimenta')
+        cy.get(loc.MOVIMENTACAO.VALOR).type('321')
+        cy.get(loc.MOVIMENTACAO.INTERESSADO).type('Jhon')
+        cy.get(loc.MOVIMENTACAO.CONTA).select('Conta Editada 01')
+        cy.get(loc.MOVIMENTACAO.STATUS).click()
+        cy.get(loc.MOVIMENTACAO.BTN_SALVAR_MOV).click()
+        cy.get(loc.MESSAGE).should('contain', 'sucesso')
+
+        cy.get(loc.EXTRATO.LINHAS).should('have.length', 7)
+        cy.xpath(loc.EXTRATO.FN_XP_BUSCA_EX('Movimenta', '321')).should('exist')
+    })
+
+    it('Should get balance', () => {
+        cy.get(loc.MENU.HOME).click()
+        cy.xpath(loc.SALDO.FN_XP_SALDO_CONTA('Conta Editada 01')).should('contain', '321,00')
+    })
+
+    it('Should remove a transaction', () => {
 
     })
 
